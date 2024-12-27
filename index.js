@@ -17,7 +17,7 @@ const dominiosPermitidos = [process.env.FRONTEND_URL];
 
 const corsOptions = {
     origin: function(origin, callback) {
-        if(dominiosPermitidos.indexOf(origin) !== -1){
+        if(dominiosPermitidos.indexOf(origin) !== -1 || !origin){
             // El origen del Request está permitido
             callback(null, true)
         } else {
@@ -27,6 +27,8 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 
 app.use('/api/veterinarios', veterinarioRoutes);
 // Definimos la ruta 'raíz' y el route que se usará
