@@ -23,7 +23,9 @@ const corsOptions = {
         } else {
             new Error('No permitido por CORS')
         }
-    }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 app.use(cors(corsOptions));
